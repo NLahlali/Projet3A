@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B0BD34291F94F9B2004F4800 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0BD34281F94F9B2004F4800 /* main.cpp */; };
+		B0B3F5501F95237500AB08A0 /* MainFuzzy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B3F54B1F95237400AB08A0 /* MainFuzzy.cpp */; };
+		B0B3F5561F95243500AB08A0 /* FuzzyLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B3F54E1F95237400AB08A0 /* FuzzyLogic.cpp */; };
+		B0C0AE2D1F9549DE000D165F /* FuzzyTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B3F5481F95236B00AB08A0 /* FuzzyTests.cpp */; };
+		B0C0AE2E1F955A12000D165F /* CoreTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0B3F5321F95232100AB08A0 /* CoreTests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +26,48 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B0ADEE911F960718007553AA /* NaryShadowExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaryShadowExpression.h; sourceTree = "<group>"; };
+		B0B3F5251F95231E00AB08A0 /* ASSERT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASSERT.h; sourceTree = "<group>"; };
+		B0B3F5271F95232100AB08A0 /* BinaryExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinaryExpression.h; sourceTree = "<group>"; };
+		B0B3F5281F95232100AB08A0 /* BinaryExpressionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinaryExpressionModel.h; sourceTree = "<group>"; };
+		B0B3F5291F95232100AB08A0 /* BinaryShadowExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinaryShadowExpression.h; sourceTree = "<group>"; };
+		B0B3F52A1F95232100AB08A0 /* CogDefuzz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CogDefuzz.h; sourceTree = "<group>"; };
+		B0B3F52B1F95232100AB08A0 /* Evaluator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Evaluator.h; sourceTree = "<group>"; };
+		B0B3F52C1F95232100AB08A0 /* Expression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Expression.h; sourceTree = "<group>"; };
+		B0B3F52D1F95232100AB08A0 /* ExpressionFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpressionFactory.h; sourceTree = "<group>"; };
+		B0B3F52E1F95232100AB08A0 /* FuzzyFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FuzzyFactory.h; sourceTree = "<group>"; };
+		B0B3F52F1F95232100AB08A0 /* MandaniDefuzz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MandaniDefuzz.h; sourceTree = "<group>"; };
+		B0B3F5301F95232100AB08A0 /* NaryExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaryExpression.h; sourceTree = "<group>"; };
+		B0B3F5311F95232100AB08A0 /* NaryExpressionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaryExpressionModel.h; sourceTree = "<group>"; };
+		B0B3F5321F95232100AB08A0 /* CoreTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CoreTests.cpp; sourceTree = "<group>"; };
+		B0B3F5331F95232100AB08A0 /* UnaryExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnaryExpression.h; sourceTree = "<group>"; };
+		B0B3F5341F95232100AB08A0 /* UnaryExpressionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnaryExpressionModel.h; sourceTree = "<group>"; };
+		B0B3F5351F95232100AB08A0 /* UnaryShadowExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnaryShadowExpression.h; sourceTree = "<group>"; };
+		B0B3F5361F95232100AB08A0 /* ValueModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValueModel.h; sourceTree = "<group>"; };
+		B0B3F5391F95236B00AB08A0 /* AggMax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AggMax.h; sourceTree = "<group>"; };
+		B0B3F53A1F95236B00AB08A0 /* AggPlus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AggPlus.h; sourceTree = "<group>"; };
+		B0B3F53B1F95236B00AB08A0 /* AndMin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AndMin.h; sourceTree = "<group>"; };
+		B0B3F53C1F95236B00AB08A0 /* IsBell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IsBell.h; sourceTree = "<group>"; };
+		B0B3F53D1F95236B00AB08A0 /* IsGauss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IsGauss.h; sourceTree = "<group>"; };
+		B0B3F53E1F95236B00AB08A0 /* IsTrapeze.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IsTrapeze.h; sourceTree = "<group>"; };
+		B0B3F53F1F95236B00AB08A0 /* IsTrapezeLeft.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IsTrapezeLeft.h; sourceTree = "<group>"; };
+		B0B3F5401F95236B00AB08A0 /* IsTrapezeRight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IsTrapezeRight.h; sourceTree = "<group>"; };
+		B0B3F5411F95236B00AB08A0 /* IsTriangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IsTriangle.h; sourceTree = "<group>"; };
+		B0B3F5421F95236B00AB08A0 /* IsZshaped.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IsZshaped.h; sourceTree = "<group>"; };
+		B0B3F5431F95236B00AB08A0 /* NotMinus1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotMinus1.h; sourceTree = "<group>"; };
+		B0B3F5441F95236B00AB08A0 /* Operators.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Operators.h; sourceTree = "<group>"; };
+		B0B3F5451F95236B00AB08A0 /* OrMax.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrMax.h; sourceTree = "<group>"; };
+		B0B3F5461F95236B00AB08A0 /* OrPlus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrPlus.h; sourceTree = "<group>"; };
+		B0B3F5471F95236B00AB08A0 /* SugenoDefuzz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SugenoDefuzz.h; sourceTree = "<group>"; };
+		B0B3F5481F95236B00AB08A0 /* FuzzyTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FuzzyTests.cpp; sourceTree = "<group>"; };
+		B0B3F5491F95236B00AB08A0 /* ThenMin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThenMin.h; sourceTree = "<group>"; };
+		B0B3F54A1F95236B00AB08A0 /* ThenSugeno.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThenSugeno.h; sourceTree = "<group>"; };
+		B0B3F54B1F95237400AB08A0 /* MainFuzzy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainFuzzy.cpp; sourceTree = "<group>"; };
+		B0B3F54D1F95237400AB08A0 /* GlobalTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalTests.cpp; sourceTree = "<group>"; };
+		B0B3F54E1F95237400AB08A0 /* FuzzyLogic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FuzzyLogic.cpp; sourceTree = "<group>"; };
+		B0B3F54F1F95237400AB08A0 /* Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tests.h; sourceTree = "<group>"; };
+		B0B3F59E1F9529DD00AB08A0 /* SugenoConclusion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SugenoConclusion.h; sourceTree = "<group>"; };
 		B0BD34251F94F9B2004F4800 /* FuzzyLogicFrameWork */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FuzzyLogicFrameWork; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0BD34281F94F9B2004F4800 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +81,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B0B3F5261F95232100AB08A0 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B0B3F5271F95232100AB08A0 /* BinaryExpression.h */,
+				B0B3F5281F95232100AB08A0 /* BinaryExpressionModel.h */,
+				B0B3F5291F95232100AB08A0 /* BinaryShadowExpression.h */,
+				B0B3F52A1F95232100AB08A0 /* CogDefuzz.h */,
+				B0B3F52B1F95232100AB08A0 /* Evaluator.h */,
+				B0B3F52C1F95232100AB08A0 /* Expression.h */,
+				B0B3F52D1F95232100AB08A0 /* ExpressionFactory.h */,
+				B0B3F52E1F95232100AB08A0 /* FuzzyFactory.h */,
+				B0B3F52F1F95232100AB08A0 /* MandaniDefuzz.h */,
+				B0B3F5301F95232100AB08A0 /* NaryExpression.h */,
+				B0ADEE911F960718007553AA /* NaryShadowExpression.h */,
+				B0B3F5311F95232100AB08A0 /* NaryExpressionModel.h */,
+				B0B3F5331F95232100AB08A0 /* UnaryExpression.h */,
+				B0B3F5341F95232100AB08A0 /* UnaryExpressionModel.h */,
+				B0B3F5351F95232100AB08A0 /* UnaryShadowExpression.h */,
+				B0B3F5361F95232100AB08A0 /* ValueModel.h */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B0B3F5381F95236B00AB08A0 /* Fuzzy */ = {
+			isa = PBXGroup;
+			children = (
+				B0B3F5391F95236B00AB08A0 /* AggMax.h */,
+				B0B3F53A1F95236B00AB08A0 /* AggPlus.h */,
+				B0B3F53B1F95236B00AB08A0 /* AndMin.h */,
+				B0B3F53C1F95236B00AB08A0 /* IsBell.h */,
+				B0B3F53D1F95236B00AB08A0 /* IsGauss.h */,
+				B0B3F53E1F95236B00AB08A0 /* IsTrapeze.h */,
+				B0B3F53F1F95236B00AB08A0 /* IsTrapezeLeft.h */,
+				B0B3F5401F95236B00AB08A0 /* IsTrapezeRight.h */,
+				B0B3F5411F95236B00AB08A0 /* IsTriangle.h */,
+				B0B3F5421F95236B00AB08A0 /* IsZshaped.h */,
+				B0B3F5431F95236B00AB08A0 /* NotMinus1.h */,
+				B0B3F5441F95236B00AB08A0 /* Operators.h */,
+				B0B3F5451F95236B00AB08A0 /* OrMax.h */,
+				B0B3F5461F95236B00AB08A0 /* OrPlus.h */,
+				B0B3F5471F95236B00AB08A0 /* SugenoDefuzz.h */,
+				B0B3F5491F95236B00AB08A0 /* ThenMin.h */,
+				B0B3F59E1F9529DD00AB08A0 /* SugenoConclusion.h */,
+				B0B3F54A1F95236B00AB08A0 /* ThenSugeno.h */,
+			);
+			path = Fuzzy;
+			sourceTree = "<group>";
+		};
 		B0BD341C1F94F9B2004F4800 = {
 			isa = PBXGroup;
 			children = (
@@ -57,7 +148,15 @@
 		B0BD34271F94F9B2004F4800 /* FuzzyLogicFrameWork */ = {
 			isa = PBXGroup;
 			children = (
-				B0BD34281F94F9B2004F4800 /* main.cpp */,
+				B0B3F5251F95231E00AB08A0 /* ASSERT.h */,
+				B0B3F54E1F95237400AB08A0 /* FuzzyLogic.cpp */,
+				B0B3F54D1F95237400AB08A0 /* GlobalTests.cpp */,
+				B0B3F54B1F95237400AB08A0 /* MainFuzzy.cpp */,
+				B0B3F54F1F95237400AB08A0 /* Tests.h */,
+				B0B3F5321F95232100AB08A0 /* CoreTests.cpp */,
+				B0B3F5481F95236B00AB08A0 /* FuzzyTests.cpp */,
+				B0B3F5381F95236B00AB08A0 /* Fuzzy */,
+				B0B3F5261F95232100AB08A0 /* Core */,
 			);
 			path = FuzzyLogicFrameWork;
 			sourceTree = "<group>";
@@ -119,7 +218,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0BD34291F94F9B2004F4800 /* main.cpp in Sources */,
+				B0C0AE2D1F9549DE000D165F /* FuzzyTests.cpp in Sources */,
+				B0B3F5561F95243500AB08A0 /* FuzzyLogic.cpp in Sources */,
+				B0C0AE2E1F955A12000D165F /* CoreTests.cpp in Sources */,
+				B0B3F5501F95237500AB08A0 /* MainFuzzy.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
