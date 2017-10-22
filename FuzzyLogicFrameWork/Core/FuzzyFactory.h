@@ -75,7 +75,7 @@ template <class T>
     _or = new core::BinaryShadowExpression<T>(or_);
     _then = new core::BinaryShadowExpression<T>(then_);
     _agg = new core::BinaryShadowExpression<T>(agg_);
-    _defuzz = new core::NaryShadowExpression<T>(defuzz_);
+    _defuzzS = new core::NaryShadowExpression<T>(defuzz_);
     _conclusion = new core::NaryShadowExpression<T>(conclusion_);
     }
     
