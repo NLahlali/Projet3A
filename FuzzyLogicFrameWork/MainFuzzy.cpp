@@ -114,7 +114,7 @@ void SugenoDefuzz()
     // food
     fuzzy::IsTriangle<float> rancid(-5,0,5);
     fuzzy::IsTriangle<float> delicious(5,10,15);
-    //values
+    // values
     core::ValueModel<float> service(0);
     core::ValueModel<float> food(0);
     
@@ -162,11 +162,11 @@ void SugenoDefuzz()
         {
         std::cout << "service : ";
         std::cin >> s;
-        //service.SetValue(s);
+        service.setValue(s);
         std::cout << "food : ";
         std::cin >> foo;
-        //food.SetValue(foo);
-        std::cout << "tips -> " <<  0/*system->Evaluate()*/ << std::endl;
+        food.setValue(foo);
+        std::cout << "tips -> " <<  system->evaluate() << std::endl;
         }
 }
 

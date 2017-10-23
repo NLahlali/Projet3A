@@ -26,24 +26,23 @@ namespace fuzzy
     {
     }
 
-    template <class T>
-    T SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*>* operands) const
+    template<class T>
+    T SugenoConclusion <T>::evaluate(std::vector<core::Expression<T>*>* operands) const
     {
-		typename std::vector<T>::const_iterator itcoef = coeff->begin();
-		typename std::vector<core::Expression<T>*>::const_iterator itexpr = operands->begin();
-		T z = 0;
-
-		// calcul de la somme des Zi
-		for (; itexpr != operands->end() && itcoef != coeff->end(); itexpr++, itcoef++)
-		{
-			// evaluation de la rËgle courante
-			T eval = (*itexpr)->evaluate();
-
-			// multiplication par le coefficient associé à cette régle
-			z += (*itcoef) * eval;
-		}
-
-		return z;
+    typename std::vector<T>::const_iterator iteratorCoef = this->coeff->begin();
+    typename std::vector<const core::Expression<T>*>::const_iterator iteratorExpr = operands->begin();
+    T result = 0;
+    
+    for(iteratorCoef = this->coeff->begin(), iteratorExpr = operands->begin(); iteratorExpr != operands->end() && iteratorCoef != this->coeff->end(); iteratorExpr++, iteratorCoef++) {
+        T eval = (*iteratorExpr)->evaluate();
+        result += *iteratorCoef * eval;
+    }
+    
+    // Si les 2 vectors n'avaient pas le même nombre d'élements.
+    if (iteratorExpr != operands->end())
+        throw(std::exception());
+    
+    return result;
     }
 }
 
