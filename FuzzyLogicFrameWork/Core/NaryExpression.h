@@ -11,7 +11,8 @@ template <class T>
 class NaryExpression
 {
 public:
-	virtual T evaluate(std::vector<Expression<T>* >*) const=0;
+    virtual ~NaryExpression(){};
+    virtual T evaluate(std::vector<Expression<T>* >*) const=0;
 };
 
 }

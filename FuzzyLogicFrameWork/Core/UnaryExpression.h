@@ -9,6 +9,7 @@ template <class T>
 class UnaryExpression{
 
 public :
+    virtual ~UnaryExpression(){};
     virtual T evaluate(Expression<T>*) const=0;
 
 };
