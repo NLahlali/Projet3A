@@ -190,7 +190,7 @@ void expression_factory_test(){
     double result2=nbem->evaluate();
     ASSERT(resultExpected2==result2);
 
-    ASSERT(2==ef.size());
+    ASSERT(2==ef.memorySize());
 
 }
 

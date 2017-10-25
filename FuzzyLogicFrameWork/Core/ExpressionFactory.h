@@ -22,7 +22,7 @@ public:
     BinaryExpressionModel<T>* newBinary(BinaryExpression<T>*, Expression<T>*, Expression<T>*);
     NaryExpressionModel<T>* newNary(NaryExpression<T>*, std::vector<Expression<T>*>*);
 
-    unsigned int size() const;
+    unsigned long memorySize() const;
 
 
 protected:
@@ -66,7 +66,7 @@ Expression<T>* ExpressionFactory<T>::hold(Expression<T>* e)
     return e;
 }
 template <class T>
-unsigned int ExpressionFactory<T>::size() const
+unsigned long ExpressionFactory<T>::memorySize() const
 {
     return memory.size();
 }
