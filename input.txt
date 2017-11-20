@@ -1,0 +1,48 @@
+values
+{
+	input food 5 0 15 5;
+	input service 10 0 10 5;
+	output tip 0 15 30 3;
+}
+
+memberships
+{
+	rancid triangle -5 0 5;
+	delicious triangle 5 10 15;
+
+
+	excellent triangle 5 10 15;
+	good triangle 0 5 10;
+	poor triangle 5 0 5;
+
+	cheap triangle 0 5 10;
+	average triangle 10 15 20;
+	generous triangle 20 25 30;
+}
+operatgggors
+{
+	And AndMult;
+	Or OrMax;
+	Then ThenMult;
+	agg AggPlus;
+	defuzzMandani CogDefuzz;
+	defuzzSugeno SugenoConclusion;
+	Not NotMinus1;
+}
+
+MamdaniRules
+{
+	food is delicious  and service is excellent then tip is generous;
+	food is delicious  and service is good then tip is generous;
+	food is delicious  and service is poor then tip is average;
+	food is rancid and service is excellent then tip is average;
+	food is rancid and service is good then tip is cheap;
+	food is rancid and service is poor then tip is cheap;
+	not(food is excellent  and service is good) then tip is generous;
+	food is rancid or service is poor then tip is cheap ;
+}
+
+SugenoRules
+{
+	food is rancid or service is poor then 12 food 56 service;
+}
