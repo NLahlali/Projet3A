@@ -7,8 +7,8 @@
 #include "MandaniDefuzz.h"
 #include "../Fuzzy/Operators.h"
 #include "NaryShadowExpression.h"
-#include "SugenoConclusion.h"
-#include "SugenoDefuzz.h"
+#include "../Fuzzy/SugenoConclusion.h"
+#include "../Fuzzy/SugenoDefuzz.h"
 
 
 namespace core
@@ -41,7 +41,7 @@ public:
     void changeThen(Then<T>*);
     void changeAgg(Agg<T>*);
     void changeDefuzz(MandaniDefuzz<T>*);
-   // void ChangeSugeno(SugenoDefuzz<T>*);
+    void ChangeSugeno(fuzzy::SugenoDefuzz<T>*);
 
 private:
     core::UnaryShadowExpression<T>* _not=NULL;
@@ -50,7 +50,6 @@ private:
     core::BinaryShadowExpression<T>* _then=NULL;
     core::BinaryShadowExpression<T>* _agg=NULL;
     core::BinaryShadowExpression<T>* _defuzz=NULL;
-    //add SugenoDefuzz
     core::NaryShadowExpression<T>* _defuzzS=NULL;
     core::NaryShadowExpression<T>* _conclusion=NULL;
     

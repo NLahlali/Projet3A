@@ -12,9 +12,9 @@ operators		   			{ return OPERATORS; }
 MamdaniRules			    { return MAMDANIRULES; }
 SugenoRules		   			{ return SUGENORULES; }
 triangle		  		    { return TRIANGLE; }
-trapez		  			    { return TRAPEZ; }
-ltrapez					    { return LTRAPEZ; }
-rtrapez		 			    { return RTRAPEZ; }
+trapeze		  			    { return TRAPEZE; }
+ltrapeze					{ return LTRAPEZE; }
+rtrapeze	 			    { return RTRAPEZE; }
 bell					    { return BELL; }
 zshape					    { return ZSHAPE; }
 guausse					    { return GUAUSSE; }
@@ -23,7 +23,7 @@ OrMax		  			    { return ORMAX; }
 ThenMult			   	    { return THENMULT; }
 AggPlus		 			    { return AGGPLUS; }
 CogDefuzz				    { return COGDEFUZZ; }
-SugenoConclusion		    { return SUGENOCONCLUSION; }
+SugDefuzz		            { return SUGDEFUZZ; }
 NotMinus1				    { return NOTMINUS1; }
 not		 				    { return NOT; }
 is							{ return IS; }
@@ -34,7 +34,8 @@ then 						{ return THEN; }
 \)           			    { return RPAREN; }
 \{			 			    { return LBRACE; }
 \}						    { return RBRACE; }
-[0-9]+     			        { yylval.ival = atoi(yytext); return INT; }
+[+-]?([0-9]*[.])?[0-9]+     { yylval.fval = strtod(yytext,NULL);
+							  return INT; }
 [a-zA-Z0-9]+   				{
     							yylval.sval = strdup(yytext);
    								 return NAME;

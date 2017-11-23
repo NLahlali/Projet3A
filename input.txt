@@ -1,8 +1,8 @@
 values
 {
-	input food 5 0 15 5;
-	input service 10 0 10 5;
-	output tip 0 15 30 3;
+	input food 8;
+	input service 3 ;
+	output tip 0 0 30 1;
 }
 
 memberships
@@ -13,20 +13,20 @@ memberships
 
 	excellent triangle 5 10 15;
 	good triangle 0 5 10;
-	poor triangle 5 0 5;
+	poor triangle 0 2 4;
 
-	cheap triangle 0 5 10;
+	cheap triangle 0 2 10;
 	average triangle 10 15 20;
 	generous triangle 20 25 30;
 }
-operatgggors
+operators
 {
 	And AndMult;
 	Or OrMax;
 	Then ThenMult;
-	agg AggPlus;
-	defuzzMandani CogDefuzz;
-	defuzzSugeno SugenoConclusion;
+	Agg AggPlus;
+	DefuzzMandani CogDefuzz;
+	DefuzzSugeno SugDefuzz;
 	Not NotMinus1;
 }
 

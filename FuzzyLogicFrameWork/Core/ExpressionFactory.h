@@ -21,6 +21,7 @@ public:
     UnaryExpressionModel<T>* newUnary(UnaryExpression<T>*, Expression<T>*);
     BinaryExpressionModel<T>* newBinary(BinaryExpression<T>*, Expression<T>*, Expression<T>*);
     NaryExpressionModel<T>* newNary(NaryExpression<T>*, std::vector<Expression<T>*>*);
+    ValueModel<T>* newValue();
 
     unsigned long memorySize() const;
 
