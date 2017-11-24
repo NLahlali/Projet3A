@@ -26,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B00277FD1FC8461B00E965C5 /* AndMult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AndMult.h; sourceTree = "<group>"; };
+		B00277FE1FC846AC00E965C5 /* ThenMult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThenMult.h; sourceTree = "<group>"; };
 		B0ADEE911F960718007553AA /* NaryShadowExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaryShadowExpression.h; sourceTree = "<group>"; };
 		B0B3F5251F95231E00AB08A0 /* ASSERT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASSERT.h; sourceTree = "<group>"; };
 		B0B3F5271F95232100AB08A0 /* BinaryExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinaryExpression.h; sourceTree = "<group>"; };
@@ -112,8 +114,10 @@
 				B0B3F53B1F95236B00AB08A0 /* AndMin.h */,
 				B0B3F53C1F95236B00AB08A0 /* IsBell.h */,
 				B0B3F53D1F95236B00AB08A0 /* IsGauss.h */,
+				B00277FD1FC8461B00E965C5 /* AndMult.h */,
 				B0B3F53E1F95236B00AB08A0 /* IsTrapeze.h */,
 				B0B3F53F1F95236B00AB08A0 /* IsTrapezeLeft.h */,
+				B00277FE1FC846AC00E965C5 /* ThenMult.h */,
 				B0B3F5401F95236B00AB08A0 /* IsTrapezeRight.h */,
 				B0B3F5411F95236B00AB08A0 /* IsTriangle.h */,
 				B0B3F5421F95236B00AB08A0 /* IsZshaped.h */,

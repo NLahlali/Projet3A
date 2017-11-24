@@ -12,9 +12,13 @@
 #include "FuzzyLogicFrameWork/Fuzzy/SugenoConclusion.h"
 #include "FuzzyLogicFrameWork/Fuzzy/NotMinus1.h"
 #include "FuzzyLogicFrameWork/Fuzzy/AndMin.h"
+#include "FuzzyLogicFrameWork/Fuzzy/AndMult.h"
 #include "FuzzyLogicFrameWork/Fuzzy/OrMax.h"
+#include "FuzzyLogicFrameWork/Fuzzy/OrPlus.h"
 #include "FuzzyLogicFrameWork/Fuzzy/ThenMin.h"
+#include "FuzzyLogicFrameWork/Fuzzy/ThenMult.h"
 #include "FuzzyLogicFrameWork/Fuzzy/AggPlus.h"
+#include "FuzzyLogicFrameWork/Fuzzy/AggMax.h"
 #include "FuzzyLogicFrameWork/Core/CogDefuzz.h"
 #include "FuzzyLogicFrameWork/Core/FuzzyFactory.h"
 //Shapes
@@ -73,7 +77,7 @@ void yyerror(char *s);
 
 %token TRIANGLE TRAPEZE LTRAPEZE RTRAPEZE BELL ZSHAPED GAUSS
 
-%token ANDMULT ANDMIN ORMAX THENMULT THENMIN AGGPLUS COGDEFUZZ SUGDEFUZZ NOTMINUS1
+%token ANDMULT ANDMIN ORMAX ORPLUS THENMULT THENMIN AGGPLUS AGGMAX COGDEFUZZ SUGDEFUZZ NOTMINUS1
 
 %token NOT AND OR IS OUTPUT INPUT THEN OFFSET
 
@@ -183,36 +187,33 @@ coreOperators:
     ;
 oper:
     NAME ANDMULT  { 
-                    fuzzy::AndMin<float> opAnd;
-                    fuzzy::AndMin<float>* pOpAnd = new fuzzy::AndMin<float>;
-                    mOperators[$1] = pOpAnd;
+                    fuzzy::AndMult<float>* pOpAnd = new fuzzy::AndMult<float>;
                     f.changeAnd(pOpAnd);
                     cout << $1 <<" declared " <<&opAnd<<endl;
                   }
 
 
     | NAME ANDMIN { 
-                    fuzzy::AndMin<float> opAnd;
                     fuzzy::AndMin<float>* pOpAnd = new fuzzy::AndMin<float>;
-                    mOperators[$1] = pOpAnd;
                     f.changeAnd(pOpAnd);
                     cout << $1 <<" declared " <<&opAnd<<endl;
                   }
 
 
     | NAME ORMAX     { 
-                       fuzzy::OrMax<float> opOr;
                        fuzzy::OrMax<float>* pOpOr = new fuzzy::OrMax<float>;
-                       mOperators[$1] = pOpOr;
+                       f.changeOr(pOpOr);
+                       cout << $1 <<"declared" <<endl;
+                     }
+    | NAME ORPLUS     { 
+                       fuzzy::OrPlus<float>* pOpOr = new fuzzy::OrPlus<float>;
                        f.changeOr(pOpOr);
                        cout << $1 <<"declared" <<endl;
                      }
 
 
     | NAME THENMULT      { 
-                           fuzzy::ThenMin<float> opThen;
-                           fuzzy::ThenMin<float>* pThen = new fuzzy::ThenMin<float>;
-                           mOperators[$1] = pThen;
+                           fuzzy::ThenMult<float>* pThen = new fuzzy::ThenMult<float>;
                            f.changeThen(pThen);
                            cout << $1 <<"declared"<<&opThen<<endl;}
 
@@ -226,33 +227,28 @@ oper:
 
 
     | NAME AGGPLUS   { 
-                       fuzzy::AggPlus<float> opAgg;
                        fuzzy::AggPlus<float>* pOpAgg = new fuzzy::AggPlus<float>;
-                       mOperators[$1] = pOpAgg;
+                       f.changeAgg(pOpAgg);
+                       cout << $1 <<"declared" <<endl;}
+    | NAME AGGMAX   { 
+                       fuzzy::AggMax<float>* pOpAgg = new fuzzy::AggMax<float>;
                        f.changeAgg(pOpAgg);
                        cout << $1 <<"declared" <<endl;}
 
-
     | NAME COGDEFUZZ     { 
-                           CogDefuzz<float> opDefuzz;
                            CogDefuzz<float>* pOpDefuzz = new CogDefuzz<float>;
-                           mOperators[$1] = pOpDefuzz;
                            f.changeDefuzz(pOpDefuzz);
                            cout << $1 <<"declared" <<endl;}
 
 
     | NAME SUGDEFUZZ      { 
-                            fuzzy::SugenoDefuzz<float> opSugDefuzz;
                             fuzzy::SugenoDefuzz<float>* pOpSugDefuzz = new fuzzy::SugenoDefuzz<float> ;
-                            mOperators[$1] = &opSugDefuzz;
                             f.changeSugeno(pOpSugDefuzz);
                             cout << $1 <<"declared" <<endl;}
 
 
     | NAME NOTMINUS1     { 
-                           fuzzy::NotMinus1<float> opNot;
                            fuzzy::NotMinus1<float>* pOpNot = new fuzzy::NotMinus1<float>;
-                           mOperators[$1] = pOpNot;
                            f.changeNot(pOpNot);
                            cout << $1 <<"declared" <<endl;}
     ;
@@ -342,7 +338,6 @@ sugenoconclusion:
                                   fuzzy::SugenoConclusion<float>* pConclusion = new fuzzy::SugenoConclusion<float>(&coef);
                                   f.changeConclusion(pConclusion);
                                   $$ = f.newNConclusion((std::vector<core::Expression<float>*>*) $2);
-                                  cout << sConclusion.size()<< endl;
                                   cout << coef[0] << coef[1] <<coef [2]<<endl;
 
                                  }

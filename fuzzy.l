@@ -19,9 +19,13 @@ bell					    { return BELL; }
 zshaped					    { return ZSHAPED; }
 gauss					    { return GAUSS; }
 AndMult		  			    { return ANDMULT; }
+AndMin		  			    { return ANDMIN; }
 OrMax		  			    { return ORMAX; }
+OrPlus		  			    { return ORPLUS; }
 ThenMult			   	    { return THENMULT; }
+ThenMin			   	    	{ return THENMIN; }
 AggPlus		 			    { return AGGPLUS; }
+AggMax		 			    { return AGGMAX; }
 CogDefuzz				    { return COGDEFUZZ; }
 SugDefuzz		            { return SUGDEFUZZ; }
 NotMinus1				    { return NOTMINUS1; }
