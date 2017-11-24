@@ -20,6 +20,7 @@ class FuzzyFactory: public core::ExpressionFactory<T>
 public:
     FuzzyFactory() {};
     FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MandaniDefuzz<T>*);
+    FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MandaniDefuzz<T>*, fuzzy::SugenoDefuzz<T>* ,fuzzy::SugenoConclusion<T>*);
     FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, fuzzy::SugenoDefuzz<T>*, fuzzy::SugenoConclusion<T>*);
 
     virtual ~FuzzyFactory();
@@ -41,7 +42,9 @@ public:
     void changeThen(Then<T>*);
     void changeAgg(Agg<T>*);
     void changeDefuzz(MandaniDefuzz<T>*);
-    void ChangeSugeno(fuzzy::SugenoDefuzz<T>*);
+    void changeSugeno(fuzzy::SugenoDefuzz<T>*);
+    void changeConclusion(fuzzy::SugenoConclusion<T>*);
+
 
 private:
     core::UnaryShadowExpression<T>* _not=NULL;
@@ -77,6 +80,18 @@ template <class T>
     _defuzzS = new core::NaryShadowExpression<T>(defuzz_);
     _conclusion = new core::NaryShadowExpression<T>(conclusion_);
     }
+template <class T>
+FuzzyFactory<T>::FuzzyFactory(Not<T>* not_, And<T>* and_, Or<T>* or_, Then<T>* then_, Agg<T>* agg_,MandaniDefuzz<T>* defuzz_,fuzzy::SugenoDefuzz<T>* sugeno_,fuzzy::SugenoConclusion<T>* conclusion_):ExpressionFactory<T>()
+    {
+    _not = new core::UnaryShadowExpression<T>(not_);
+    _and = new core::BinaryShadowExpression<T>(and_);
+    _or = new core::BinaryShadowExpression<T>(or_);
+    _then = new core::BinaryShadowExpression<T>(then_);
+    _agg = new core::BinaryShadowExpression<T>(agg_);
+    _defuzz = new core::BinaryShadowExpression<T>(defuzz_);
+    _defuzzS = new core::NaryShadowExpression<T>(sugeno_);
+    _conclusion = new core::NaryShadowExpression<T>(conclusion_);
+    }
     
 template <class T>
 FuzzyFactory<T>::~FuzzyFactory(){
@@ -86,6 +101,8 @@ FuzzyFactory<T>::~FuzzyFactory(){
     delete _then;
     delete _agg;
     delete _defuzz;
+    delete _defuzzS;
+    delete _conclusion;
 }
 
 template <class T>
@@ -182,6 +199,18 @@ template <class T>
 void FuzzyFactory<T>::changeDefuzz(MandaniDefuzz<T>* o)
 {
     _defuzz->setTarget(o);
+}
+
+template <class T>
+void FuzzyFactory<T>::changeSugeno(fuzzy::SugenoDefuzz<T>* o)
+{
+    _defuzzS->setTarget(o);
+}
+
+template <class T>
+void FuzzyFactory<T>::changeConclusion(fuzzy::SugenoConclusion<T>* o)
+{
+    _conclusion->setTarget(o);
 }
 
 

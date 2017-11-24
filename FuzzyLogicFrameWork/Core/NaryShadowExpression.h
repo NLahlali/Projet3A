@@ -12,6 +12,7 @@ namespace core
 	public:
 		NaryShadowExpression(NaryExpression<T>*);
 		T evaluate(std::vector<Expression<T>*>* operands) const;
+        void setTarget(NaryExpression<T>*);
 	private:
 		NaryExpression<T>* target;
 	};
@@ -30,6 +31,10 @@ namespace core
 			return target->evaluate(operands);
 		return NULL;
 	}
+template <class T>
+void NaryShadowExpression<T>::setTarget(NaryExpression<T>* t){
+        target=t;
+    }
 
 }
 

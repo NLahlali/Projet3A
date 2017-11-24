@@ -16,8 +16,8 @@ trapeze		  			    { return TRAPEZE; }
 ltrapeze					{ return LTRAPEZE; }
 rtrapeze	 			    { return RTRAPEZE; }
 bell					    { return BELL; }
-zshape					    { return ZSHAPE; }
-guausse					    { return GUAUSSE; }
+zshaped					    { return ZSHAPED; }
+gauss					    { return GAUSS; }
 AndMult		  			    { return ANDMULT; }
 OrMax		  			    { return ORMAX; }
 ThenMult			   	    { return THENMULT; }
