@@ -46,5 +46,5 @@ MamdaniRules
 
 SugenoRules
 {
-	food is rancid or service is poor then 1 food 1 service;
+	food is rancid or service is poor then 1 food 1 service offset 0;
 }

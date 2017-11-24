@@ -90,12 +90,18 @@ void SugenoDefuzz()
 {
     
     //operators
-    fuzzy::NotMinus1<float>     opNot;
-    fuzzy::AndMin<float>       opAnd;
-    fuzzy::OrMax<float>        opOr;
-    fuzzy::ThenSugeno<float>   opThen;
-    fuzzy::AggMax<float>       opAgg;
+    fuzzy::NotMinus1<float> opNot;
+    fuzzy::AndMin<float> opAnd;
+    fuzzy::OrMax<float> opOr;
+    fuzzy::ThenMin<float> opThen;
+    fuzzy::AggPlus<float> opAgg;
+    core::CogDefuzz<float> opDefuzz;
     fuzzy::SugenoDefuzz<float> opSugDefuzz;
+    //std::vector<float> coef;
+    //std::vector<core::Expression<float>*> rules;
+    //fuzzy::SugenoConclusion<float> opConclusion(&coef);
+    std::vector<core::Expression<float>*> sConclusion;
+   
     
     std::vector<float> coef;
     coef.push_back(1);
@@ -103,8 +109,12 @@ void SugenoDefuzz()
     coef.push_back(1);
     fuzzy::SugenoConclusion<float> opConclusion(&coef);
     
+    core::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz,&opSugDefuzz,&opConclusion);
+    fuzzy::ThenSugeno<float>* pThen = new fuzzy::ThenSugeno<float>;
+    f.changeThen(pThen);
+    
     //fuzzy expression factory
-    FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opSugDefuzz,&opConclusion);
+    //FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opSugDefuzz,&opConclusion);
     
     //membership function
     // service
@@ -138,34 +148,19 @@ void SugenoDefuzz()
                               f.newNConclusion(&SC_service_food)
                               ));
     
-    rules.push_back(
-                    f.newThen(
-                              f.newIs(&good, &service),
-                              f.newNConclusion(&SC_service)
-                              ));
-    
-    rules.push_back(
-                    f.newThen(
-                              f.newOr(
-                                      f.newIs(&excellent, &service),
-                                      f.newIs(&delicious, &food)
-                                      ),
-                              f.newNConclusion(&SC_service_food)
-                              ));
-    
     //defuzzification
     core::Expression<float> *system = f.newSugeno(&rules);
     
     //apply input
-    float s, foo;
+    float s;
     while (true)
         {
         std::cout << "service : ";
         std::cin >> s;
         service.setValue(s);
         std::cout << "food : ";
-        std::cin >> foo;
-        food.setValue(foo);
+        std::cin >> s;
+        food.setValue(s);
         std::cout << "tips -> " <<  system->evaluate() << std::endl;
         }
 }

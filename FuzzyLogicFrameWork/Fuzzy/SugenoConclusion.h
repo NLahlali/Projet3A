@@ -38,8 +38,14 @@ namespace fuzzy
         result += *iteratorCoef * eval;
     }
     
+    if(iteratorCoef != coeff->end()){
+        result += *iteratorCoef;
+        iteratorCoef++;
+    }
+        
+    
     // Si les 2 vectors n'avaient pas le mme nombre d'Žlements.
-    if (iteratorExpr != operands->end())
+    if (iteratorExpr != operands->end() & iteratorCoef != coeff->end())
         throw(std::exception());
     
     return result;

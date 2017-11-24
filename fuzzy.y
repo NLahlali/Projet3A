@@ -76,7 +76,7 @@ void yyerror(char *s);
 
 %token ANDMULT ANDMIN ORMAX THENMULT THENMIN AGGPLUS COGDEFUZZ SUGDEFUZZ NOTMINUS1
 
-%token NOT AND OR IS OUTPUT INPUT THEN
+%token NOT AND OR IS OUTPUT INPUT THEN OFFSET
 
  
 %token <fval> INT
@@ -108,6 +108,7 @@ expression:
                                                     }
     | SUGENORULES LBRACE coreSugenoRules RBRACE     {
                                                       sugenoSystem = f.newSugeno(&rules);
+                                                      cout << rules.size() <<endl;
                                                     }
     ;
 coreValues:
@@ -322,18 +323,26 @@ conclusion:
 coreSugenoRules:
     unaryExp sugenoconclusion  {
                                     rules.push_back( f.newThen((core::Expression<float> *)$1,(core::Expression<float> *)$2));
+                                    //sConclusion.clear();
+                                    //coef.clear();
                                 }
 
     | binaryExp sugenoconclusion {
                                     rules.push_back( f.newThen((core::Expression<float> *)$1,(core::Expression<float> *)$2));
+                                    //sConclusion.clear();
+                                    //coef.clear();
                                 }
 
     | coreSugenoRules unaryExp sugenoconclusion {
                                                    rules.push_back( f.newThen((core::Expression<float> *)$2,(core::Expression<float> *)$3));
+                                                   //sConclusion.clear();
+                                                   //coef.clear();
                                                 }
 
     | coreSugenoRules binaryExp sugenoconclusion {
                                                     rules.push_back( f.newThen((core::Expression<float> *)$2,(core::Expression<float> *)$3));
+                                                    //sConclusion.clear();
+                                                    //coef.clear();
                                                   }
 
 sugenoconclusion:
@@ -342,8 +351,9 @@ sugenoconclusion:
                                   f.changeConclusion(pConclusion);
                                   $$ = f.newNConclusion(&sConclusion);
                                   cout << sConclusion.size()<< endl;
-                                  sConclusion.clear();
-                                  coef.clear();
+                                  cout << coef[0] << coef[1] <<coef [2]<<endl;
+                                  //sConclusion.clear();
+                                  //coef.clear();
                                  }
 linearCombinaison:
     INT NAME                    {
@@ -363,8 +373,19 @@ linearCombinaison:
                                       cout<<"undifined input : "<<endl<<$3<<endl;
                                       exit(-1);
                                     }
+                                    cout << "here2"<<endl;
                                     coef.push_back($2);
                                   }
+    | linearCombinaison INT NAME OFFSET INT {  
+                                    coef.push_back($2);
+                                    coef.push_back($5);
+                                    if(mValues.find($3) != mValues.end())
+                                      sConclusion.push_back(mValues[$3]);
+                                    else{
+                                      cout<<"undifined input : "<<endl<<$3<<endl;
+                                      exit(-1);
+                                 }
+                               }
     ;
 
 %%
@@ -418,7 +439,7 @@ int main(int argc, char *argv[]) {
     do {
         yyparse();
     } while (!feof(yyin));
-    cout <<"parsing completed"<<endl;
+    /*cout <<"parsing completed"<<endl;
     cout <<"Map Operators size:"<< mOperators.size() <<endl;
     cout <<"Map mMemberShips size:"<< mMemberShips.size() <<endl;
     // Iterate through all elements in std::map
@@ -433,7 +454,7 @@ int main(int argc, char *argv[]) {
     {
         std::cout<<it1->first<<" :: "<<it1->second<<endl;
         it1++;
-    }
+    }*/
     while(true){
     int select;
     char c='a';

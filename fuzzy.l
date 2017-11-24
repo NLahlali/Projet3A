@@ -27,6 +27,7 @@ SugDefuzz		            { return SUGDEFUZZ; }
 NotMinus1				    { return NOTMINUS1; }
 not		 				    { return NOT; }
 is							{ return IS; }
+offset						{ return OFFSET; }
 and 						{ return AND; }
 or 							{ return OR; }
 then 						{ return THEN; }
