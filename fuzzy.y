@@ -52,7 +52,6 @@ fuzzy::SugenoDefuzz<float> opSugDefuzz;
 std::vector<float> coef;
 std::vector<core::Expression<float>*> rules;
 fuzzy::SugenoConclusion<float> opConclusion(&coef);
-std::vector<core::Expression<float>*> sConclusion;
 core::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz,&opSugDefuzz,&opConclusion);
 core::Expression<float> *r = NULL;
 core::Expression<float> * mamdaniSystem=NULL;
@@ -85,6 +84,7 @@ void yyerror(char *s);
 %type <exp> binaryExp
 %type <exp> conclusion
 %type <exp> sugenoconclusion
+%type <exp> linearCombinaison
 
 
 
@@ -323,43 +323,37 @@ conclusion:
 coreSugenoRules:
     unaryExp sugenoconclusion  {
                                     rules.push_back( f.newThen((core::Expression<float> *)$1,(core::Expression<float> *)$2));
-                                    //sConclusion.clear();
-                                    //coef.clear();
                                 }
 
     | binaryExp sugenoconclusion {
                                     rules.push_back( f.newThen((core::Expression<float> *)$1,(core::Expression<float> *)$2));
-                                    //sConclusion.clear();
-                                    //coef.clear();
                                 }
 
     | coreSugenoRules unaryExp sugenoconclusion {
                                                    rules.push_back( f.newThen((core::Expression<float> *)$2,(core::Expression<float> *)$3));
-                                                   //sConclusion.clear();
-                                                   //coef.clear();
                                                 }
 
     | coreSugenoRules binaryExp sugenoconclusion {
                                                     rules.push_back( f.newThen((core::Expression<float> *)$2,(core::Expression<float> *)$3));
-                                                    //sConclusion.clear();
-                                                    //coef.clear();
                                                   }
 
 sugenoconclusion:
     THEN linearCombinaison ';'  {
                                   fuzzy::SugenoConclusion<float>* pConclusion = new fuzzy::SugenoConclusion<float>(&coef);
                                   f.changeConclusion(pConclusion);
-                                  $$ = f.newNConclusion(&sConclusion);
+                                  $$ = f.newNConclusion((std::vector<core::Expression<float>*>*) $2);
                                   cout << sConclusion.size()<< endl;
                                   cout << coef[0] << coef[1] <<coef [2]<<endl;
-                                  //sConclusion.clear();
-                                  //coef.clear();
+
                                  }
 linearCombinaison:
     INT NAME                    {
                                     coef.push_back($1);
-                                    if(mValues.find($2) != mValues.end())
-                                      sConclusion.push_back(mValues[$2]);
+                                    if(mValues.find($2) != mValues.end()){
+                                      std::vector<core::Expression<float>*>* sConclusion = new std::vector<core::Expression<float>*>;
+                                      sConclusion->push_back(mValues[$2]);
+                                      $$ = sConclusion;
+                                    }
                                     else{
                                       cout<<"undifined input : "<<endl<<$2<<endl;
                                       exit(-1);
@@ -368,7 +362,7 @@ linearCombinaison:
                                 }
     | linearCombinaison INT NAME { 
                                     if(mValues.find($3) != mValues.end())
-                                      sConclusion.push_back(mValues[$3]);
+                                      ((std::vector<core::Expression<float>*>*)$1)->push_back(mValues[$3]);
                                     else{
                                       cout<<"undifined input : "<<endl<<$3<<endl;
                                       exit(-1);
@@ -380,7 +374,7 @@ linearCombinaison:
                                     coef.push_back($2);
                                     coef.push_back($5);
                                     if(mValues.find($3) != mValues.end())
-                                      sConclusion.push_back(mValues[$3]);
+                                      ((std::vector<core::Expression<float>*>*)$1)->push_back(mValues[$3]);
                                     else{
                                       cout<<"undifined input : "<<endl<<$3<<endl;
                                       exit(-1);
@@ -457,7 +451,6 @@ int main(int argc, char *argv[]) {
     }*/
     while(true){
     int select;
-    char c='a';
     std::cout << "1: Mamdani" << std::endl;
     std::cout << "2: Sugeno" << std::endl;
     std::cout << "-1: exit" <<endl;
